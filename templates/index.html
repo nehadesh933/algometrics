@@ -7,31 +7,47 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
         body {
-            background-color: #f8f9fa;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
+            background: url('components/2.png') no-repeat center top;
+            width: 1158px; /* Fixes width */
+            height: 475px; /* Fixes height */
+            margin: 0 auto; /* Centers the body if needed */
+        }         
         .navbar {
             margin-bottom: 2rem;
         }
         .card-container {
-            flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
+            min-height: calc(100vh - 70px); /* Adjusts height considering navbar */
+            padding-top: 80px; /* Space for navbar */
         }
         .card {
             width: 30rem;
         }
+        #home {
+            padding-top: 100px; /* Ensures visibility under navbar */
+        }
+        /* Center "About Us" and "Features" */
+        #about, #features {
+            max-width: 800px;
+            margin: auto;
+            padding-top: 100px; /* Adds space to prevent navbar overlap */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centers content */
+            text-align: center; /* Aligns text */
+        }
+        .card-header {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
     </style>
+    
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container-fluid d-flex justify-content-between">
             <a class="navbar-brand fw-bold" href="#">Algometrics</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,39 +56,27 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Home</a>
+                        <a class="nav-link active" href="#home">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
+                        <a class="nav-link" href="#features">Features</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About Us</a>
+                        <a class="nav-link" href="#about">About Us</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Flash messages -->
-    <div class="container">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                <div class="alert alert-{{ messages[0][0] }}">
-                    {{ messages[0][1] }}
-                </div>
-            {% endif %}
-        {% endwith %}
-    </div>
-
-    <!-- Card Container -->
-    <div class="card-container">
+    <!-- Home Section (File Upload) -->
+    <div id="home" class="card-container">
         <div class="card">
             <div class="card-header text-center">
                 Upload Student Data
             </div>
             <div class="card-body">
                 <p class="card-text text-center">Please upload a .csv or .xls file to analyze student trends and gain insights.</p>
-                <!-- Modified form -->
                 <form method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <input type="file" class="form-control-file" id="fileInput" name="fileInput" accept=".csv, .xls, .xlsx">
@@ -82,5 +86,43 @@
             </div>
         </div>
     </div>
+
+    <!-- About Us Section -->
+    <section id="about" class="container mt-5">
+        <div class="card">
+            <div class="card-header bg-primary text-white text-center">
+                About Us
+            </div>
+            <div class="card-body">
+                <p>
+                    Welcome to <strong>Algometrics</strong>, your trusted partner in data-driven education analytics. 
+                    We empower educators, administrators, and institutions by providing deep insights into student data. 
+                    Our mission is to bridge the gap between raw data and actionable decisions, making education smarter and more efficient.
+                </p>
+                <p>
+                    With intuitive tools for data visualization and trend analysis, we help you track student progress, 
+                    identify patterns, and optimize learning strategies. At Algometrics, we believe that informed decisions lead to better outcomes.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="container mt-5">
+        <div class="card">
+            <div class="card-header bg-success text-white text-center">
+                Features
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group-item">📊 <strong>Data Upload & Analysis:</strong> Upload CSV or Excel files for instant insights.</li>
+                    <li class="list-group-item">📈 <strong>Exploratory Data Analysis (EDA):</strong> Get a detailed breakdown of your dataset, including shape, columns, missing values, and summary statistics.</li>
+                    <li class="list-group-item">🔍 <strong>Trend Identification:</strong> Detect patterns and trends in student performance.</li>
+                    <li class="list-group-item">⚡ <strong>Real-Time Reports:</strong> Generate real-time statistical reports for informed decision-making.</li>
+                    <li class="list-group-item">🔒 <strong>Secure & Confidential:</strong> We prioritize data security and ensure privacy protection.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
