@@ -52,6 +52,8 @@ def upload():
                     'predictions': model_predictions(insights)
                 }
 
+                insights = insights.dropna() # preprocessing
+                os.remove(filepath)
                 # Run visualization script
                 subprocess.run(["python", "visualization.py"])
 
