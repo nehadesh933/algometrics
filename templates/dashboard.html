@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Analytics Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 95%;
+        }
+        .dashboard-title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 20px;
+            padding: 10px;
+        }
+        .iframe-container {
+            width: 100%;
+            height: 450px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            overflow: hidden;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="dashboard-title">📊 Data Analytics Dashboard</h1>
+
+        <div class="grid-container">
+            <div class="iframe-container"><iframe src="static/visualizations/average_scores_by_gender.html"></iframe></div>
+            <div class="iframe-container"><iframe src="static/visualizations/std_scores_by_parental_education.html"></iframe></div>
+            <div class="iframe-container"><iframe src="static/visualizations/min_scores_by_race.html"></iframe></div>
+            <div class="iframe-container"><iframe src="static/visualizations/avg_math_score_by_test_prep.html"></iframe></div>
+            <div class="iframe-container"><iframe src="static/visualizations/Heatmaps.html"></iframe></div>
+        </div>
+
+        <!-- ✅ Download and Back Buttons -->
+        <div class="button-container">
+            <a href="/static/Predictions.csv" class="btn btn-success" download>
+                📥 Download Predictions.csv
+            </a>
+            <a href="/upload" class="btn btn-secondary">
+                ⬅️ Back to Home
+            </a>
+        </div>
+
+        <!-- ✅ Predictions Section -->
+        <div class="iframe-container mt-4">
+            <h5 class="text-center">📌 Key Insights & Predictions</h5>
+            <iframe src="static/visualizations/predictions.html"></iframe>
+        </div>
+
+    </div>
+
+</body>
+</html>
